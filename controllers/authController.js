@@ -89,7 +89,7 @@ const signin = async (req , res, next) => {
         
         const user = await User.findOne({email}).select('+password');
 
-        if(!user || await bcrypt.compare(password , user.password)){
+        if(!user || await bcrypt.comparePassword(password , user.password)){
             return next(new AppError("Email or password does not match" , 400));
         }
 
