@@ -4,12 +4,14 @@ import express from 'express';
 import dbConnection from './config/dbConnection.js';
 import authRouter from './routes/authRoute.js';
 // const dbConnection = require('./config/dbConnection');
+import dotenv from 'dotenv'
+dotenv.config();
 
 const app = express();
 
 dbConnection();
 
-app.use('/' , ( req ,res) => {
+app.get('/' , ( req ,res) => {
 
     res.status(200).json({
         data : "Welcome to the Night Craving Food Canteen !!"

@@ -1,14 +1,12 @@
-// const mongoose = require('mongoose');
-
 import mongoose from "mongoose";
 
-// mongoose.set('strictQuery' , false);
+mongoose.set('strictQuery' , false);
 
-const MONGO_URL = "mongodb://127.0.0.1:27017";
+// const MONGO_URL = process.env.MONGO_URL || "mongodb://127.0.0.1:27017"
 
 const dbConnection = () =>{
 
-    mongoose.connect(MONGO_URL)
+    mongoose.connect(process.env.MONGO_URL)
             .then((conn) => {
                 console.log(`Connected to ${conn.connection.host}`)
             })
@@ -17,7 +15,5 @@ const dbConnection = () =>{
                 process.exit(1);
             });
 }
-
-// module.exports = dbConnection;
 
 export default dbConnection;

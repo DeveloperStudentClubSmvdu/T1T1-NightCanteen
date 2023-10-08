@@ -1,8 +1,8 @@
 // const app = require('./app');
-import { config } from "dotenv";
+// import { config } from "dotenv";
 import app from './app.js';
 
-config();
+// config();
 
 const PORT = process.env.PORT || 5015;
 
