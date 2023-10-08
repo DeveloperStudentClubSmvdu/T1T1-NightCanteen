@@ -4,7 +4,7 @@ import emailValidator from 'email-validator';
 
 const cookieOption = {
     secure : true,
-    maxAge : 24*60*60*100, // 24 Hours
+    maxAge : 24*60*60*1000, // 24 Hours
     httpOnly : true
 }
 
