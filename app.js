@@ -11,13 +11,13 @@ const app = express();
 
 dbConnection();
 
+app.use(express.json());
+
 app.get('/' , ( req ,res) => {
 
-    res.status(200).json({
-        data : "Welcome to the Night Craving Food Canteen !!"
-    })
+    res.send("<h1 style='color:red;''> Welcome to the Night Craving Home Page </h1>")
 });
 
-app.use('/' , authRouter);
+app.use('/api/auth' , authRouter);
 
 export default app;
