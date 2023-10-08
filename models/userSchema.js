@@ -60,6 +60,10 @@ userSchema.methods = {
             process.env.JWT_SECRET,
             {expiresIn : '24h'}
         )
+    },
+
+    comparePassword: async function (plainTextPassword) {
+        return await bcrypt.compare(plainTextPassword, this.password);
     }
 }
 
