@@ -26,11 +26,11 @@ const userSchema = new Schema({
         minLength: [8, 'Password must be atleast 8 characters'],
         select: false
     },
-    role: {
-        type: String,
-        enum: ['USER', 'OWNER'],
-        default: 'USER'
-    },
+    // role: {
+    //     type: String,
+    //     enum: ['USER', 'OWNER'],
+    //     default: 'USER'
+    // },
 
     forgotPasswordToken: String,
     forgotPasswordExpiry: Date,
