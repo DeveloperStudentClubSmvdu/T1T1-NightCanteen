@@ -1,11 +1,11 @@
 import { Schema , model } from 'mongoose';
 
 const userSchema = new Schema({
-    Username: {
+    username: {
         type: String,
-        required: [true, "Name is required"],
-        minLength: [3, 'Name must be at-least 5 character'],
-        maxLength: [50, 'Name must should be less than 50 characters'],
+        required: [true, "Username is required"],
+        minLength: [3, 'Username must be at-least 5 character'],
+        maxLength: [50, 'Username must should be less than 50 characters'],
         lowercase: true,
         trim: true
     },

@@ -65,7 +65,7 @@ const signup = async (req , res, next) => {
 
          } catch (error) {
             // when an already register user tried to register
-            if( e.code === 11000){
+            if( error.code === 11000){
                 return res.status(200).json({
                     success : false,
                     message : "Account already exists"
