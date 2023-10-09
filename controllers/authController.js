@@ -3,7 +3,7 @@ import AppError from "../utils/appError.js";
 import emailValidator from 'email-validator';
 
 const cookieOption = {
-    secure : true,
+    // secure : true,
     maxAge : 24*60*60*1000, // 24 Hours
     httpOnly : true
 }
@@ -54,8 +54,12 @@ const signup = async (req , res, next) => {
                 // now save the user
                 await user.save();
 
+                const token = await user.jwtToken();
+
                 // hide the user password as we are going to show the user details when user registered successfully
                 user.password = undefined;
+
+                res.cookie("token" , token , cookieOption);
 
                 res.status(200).json({
                     success : true,
@@ -89,11 +93,11 @@ const signin = async (req , res, next) => {
         
         const user = await User.findOne({email}).select('+password');
 
-        if(!user || await bcrypt.comparePassword(password , user.password)){
+        if(!user || !user.comparePassword(password)){
             return next(new AppError("Email or password does not match" , 400));
         }
 
-        const token = await user.generateJWTToken();
+        const token = await user.jwtToken();
 
         user.password = undefined;
 
