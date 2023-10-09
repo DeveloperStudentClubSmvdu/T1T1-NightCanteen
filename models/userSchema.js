@@ -1,5 +1,5 @@
 import { Schema , model } from 'mongoose';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import JWT from 'jsonwebtoken';
 
 const userSchema = new Schema({
@@ -58,7 +58,7 @@ userSchema.methods = {
         return JWT.sign(
             {id : this._id , email: this.email},
             process.env.JWT_SECRET,
-            {expiresIn : '24h'}
+            {expiresIn : process.env.JWT_EXPIRY}
         )
     },
 
