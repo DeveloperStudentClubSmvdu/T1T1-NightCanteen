@@ -128,7 +128,7 @@ const getUserDetails = async (req ,res , next) =>{
             data : user
         });
     } catch (error) {
-        return next( new AppError(e.message , 400));
+        return next( new AppError(error.message , 400));
     }
 
 }
