@@ -6,11 +6,13 @@ import authRouter from './routes/authRoute.js';
 // const dbConnection = require('./config/dbConnection');
 import dotenv from 'dotenv'
 dotenv.config();
+import cookieParser from 'cookie-parser';
 
 const app = express();
 
 dbConnection();
 
+app.use(cookieParser());
 app.use(express.json());
 
 app.get('/' , ( req ,res) => {
