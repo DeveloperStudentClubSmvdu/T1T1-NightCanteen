@@ -3,8 +3,8 @@ import AppError from "../utils/appError.js";
 import emailValidator from 'email-validator';
 
 const cookieOption = {
-    // secure : true,
-    maxAge : 24*60*60*1000, // 24 Hours
+    secure : true,
+    maxAge : 60*1000, // 1 min
     httpOnly : true
 }
 
@@ -54,12 +54,12 @@ const signup = async (req , res, next) => {
                 // now save the user
                 await user.save();
 
-                const token = await user.jwtToken();
+                // const token = await user.jwtToken();
 
                 // hide the user password as we are going to show the user details when user registered successfully
                 user.password = undefined;
 
-                res.cookie("token" , token , cookieOption);
+                // res.cookie("token" , token , cookieOption);
 
                 res.status(200).json({
                     success : true,
@@ -115,8 +115,26 @@ const signin = async (req , res, next) => {
     }
 }
 
+const getUserDetails = async (req ,res , next) =>{
+
+    const userId = req.user.id;
+
+    try {
+        
+        const user = await User.findById(userId);
+
+        return res.status(200).json({
+            success : true,
+            data : user
+        });
+    } catch (error) {
+        return next( new AppError(e.message , 400));
+    }
+
+}
 export {
 
     signin,
-    signup
+    signup,
+    getUserDetails
 }
