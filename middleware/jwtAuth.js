@@ -27,4 +27,18 @@ const jwtAuth = (req , res , next) => {
     next();
 }
 
-export default jwtAuth;
+const authorizedRoles = (...roles) => (req , res , next) => {
+
+    const currentRole = req.user.id;
+
+    if(!roles.includes(currentRole)){
+        return next(new AppError('You have no permission to access this route'  , 500));
+    }
+
+    next();
+}
+
+export {
+    jwtAuth,
+    authorizedRoles
+}
