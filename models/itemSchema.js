@@ -2,16 +2,16 @@ import {Schema , model } from "mongoose";
 
 const itemSchema = new Schema({
     
-    name : {
+    title : {
         type : String,
-        require : [true , "Dish/Food Name is required"]
+        require : [true , "Dish/Food Name is required"],
+        minLen  : 4
     },
 
     description : {
         type : String,
         required : [true , "Description is required"],
-        minLength : [10 , "Description must be at least 10 characters"],
-        maxLength : [80 , "Description must be less than 80 characters"]
+        minLength : [8 , "Description must be at least 10 characters"],
     },
 
     price : {
@@ -29,7 +29,7 @@ const itemSchema = new Schema({
         required : [true , "Category is required"]
     },
 
-    itemImage : {
+    img : {
         public_id : {
             type : String
         },
@@ -42,3 +42,6 @@ const itemSchema = new Schema({
     timestamps : true
 });
 
+const Items = model('Items' , itemSchema);
+
+export default Items;
