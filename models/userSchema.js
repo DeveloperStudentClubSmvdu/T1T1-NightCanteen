@@ -7,7 +7,7 @@ const userSchema = new Schema({
         type: String,
         required: [true, "Username is required"],
         minLength: [3, 'Username must be at-least 5 character'],
-        maxLength: [50, 'Username must should be less than 50 characters'],
+        maxLength: [50, 'Username must be less than 50 characters'],
         lowercase: true,
         trim: true
     },
@@ -28,11 +28,11 @@ const userSchema = new Schema({
         minLength: [8, 'Password must be atleast 8 characters'],
         select: false
     },
-    // role: {
-    //     type: String,
-    //     enum: ['USER', 'OWNER'],
-    //     default: 'USER'
-    // },
+    role: {
+        type: String,
+        enum: ['CUSTOMER', 'ADMIN'],
+        default: 'CUSTOMER'
+    },
 
     forgotPasswordToken: String,
     forgotPasswordExpiry: Date,
